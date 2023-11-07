@@ -1,0 +1,1 @@
+print('Test String:', 100) # print on terminal

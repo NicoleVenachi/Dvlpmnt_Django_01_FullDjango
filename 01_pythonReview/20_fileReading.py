@@ -16,4 +16,4 @@ for line in countr_file.readlines():
   print(line)
 
 countr_file.close()# cerrar the file
-   
+

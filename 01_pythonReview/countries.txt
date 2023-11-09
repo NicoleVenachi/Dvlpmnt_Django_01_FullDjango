@@ -1,4 +1,3 @@
-Ghana
-Mexico
-Spain
-France
+This is a new text
+print('new file')
+This is a new line 

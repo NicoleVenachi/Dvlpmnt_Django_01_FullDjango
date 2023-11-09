@@ -1,5 +1,5 @@
 
-# *** Crear/Definir functions  ***
+# ******** Crear/Definir functions  ********
 
 def function_name(parameters):
   a = parameters
@@ -14,7 +14,7 @@ def function_name(parameters):
 def greetings_function(name, age):
   print('Welcome ' + name + ' you\'re ' + str(age) + 'years old')
 
-# *** llamar/invocar function ***
+# ******** llamar/invocar function ********
 function_name('arguments')
 
 # greetings_function('perro', 23) #directo

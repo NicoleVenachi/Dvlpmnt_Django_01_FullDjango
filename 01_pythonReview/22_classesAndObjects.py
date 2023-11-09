@@ -20,3 +20,4 @@ print(person1.name)
 #puedo eliminar atributos 
 del person1.name
 print(type(person1))
+

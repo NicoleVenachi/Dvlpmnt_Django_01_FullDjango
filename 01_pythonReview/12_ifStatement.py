@@ -49,3 +49,12 @@ if (len(value) < 10):
   print(str(value) +' is less than 10')
 else:
   print(str(value) +' is greater than 10')
+
+# **** Simple example (check if a number is an even or odd number)****
+
+value = int(input('Input a number: \t'))
+
+if (value % 2 == 0):
+  print(str(value) +' is an even number')
+else:
+  print(str(value) +' is an odd number')

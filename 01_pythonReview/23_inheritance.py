@@ -6,3 +6,5 @@ class Person(Student):
 
 person1 = Person() #instancio objeto
 print(person1.name)
+
+

@@ -15,7 +15,7 @@ def index(request):
 
 def counter(request):
 
-  text = request.GET.get('text')
+  text = request.POST.get('text')
 
   textToArray = text.split() # (), empyt, thencesplit by white spacing
   

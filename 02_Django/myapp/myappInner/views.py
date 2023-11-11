@@ -13,3 +13,15 @@ def index(request):
   
   return render(request, 'index.html', context)
 
+def counter(request):
+
+  text = request.GET.get('text')
+
+  textToArray = text.split() # (), empyt, thencesplit by white spacing
+  
+  context = {
+    'amount': len(textToArray) #amountOfWords
+  }
+
+  return render(request, 'counter.html', context) #html for counter
+

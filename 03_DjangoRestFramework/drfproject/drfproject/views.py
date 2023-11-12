@@ -16,19 +16,33 @@ from rest_framework import status
 from drfapp.serializers import StudentSerializer
 from drfapp.models import Student
 
+# authentication
+from rest_framework.permissions import IsAuthenticated
+
 
 class TestView(APIView):
 
+  permission_classes = (IsAuthenticated, )
+
+
+
   #get function -> handle get request de la API and serializing the data going out
   def get(self, request, *args, **kwargs):
-    # Espeficciamos un query set (data a traer)
-    qs = Student.objects.all()
-    print(qs)
-    
-    serializer = StudentSerializer(qs, many = True) # creo serializer, para pasar de data en DB a JSON, many = True porque traemos varios registros
+    # print('asas')
 
+    # print(request)
     
+    qs = Student.objects.all() # Espeficciamos un query set (data a traer)
+
+    # serializer = StudentSerializer(qs, many = True) # creo serializer, para pasar de data en DB a JSON, many = True porque traemos varios registros
+
+    student1 = qs.first() #para sacar solo 1
+    serializer = StudentSerializer(student1)
+
+
     return Response(serializer.data) # data to send back as a response to client
+
+
 
   #get method routing (receive data in a form like)
   def post(self, request, *args, **kwargs):

@@ -19,13 +19,16 @@ from drfapp.models import Student
 
 class TestView(APIView):
 
-  #get function -> handle get request de la API
+  #get function -> handle get request de la API and serializing the data going out
   def get(self, request, *args, **kwargs):
-    data = {
-      "username": "admin",
-      "years_active": 10,
-    } # data to send back as a response to client
-    return Response(data)
+    # Espeficciamos un query set (data a traer)
+    qs = Student.objects.all()
+    print(qs)
+    
+    serializer = StudentSerializer(qs, many = True) # creo serializer, para pasar de data en DB a JSON, many = True porque traemos varios registros
+
+    
+    return Response(serializer.data) # data to send back as a response to client
 
   #get method routing (receive data in a form like)
   def post(self, request, *args, **kwargs):

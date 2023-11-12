@@ -19,11 +19,15 @@ from django.urls import path, include
 
 from .views import TestView #importo la vista
 
+from rest_framework.authtoken.views import obtain_auth_token
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('api-auth/', include('rest_framework.urls')), #configuro las urls que el framework reconozca
 
     path('', TestView.as_view(), name='test'), #.as_view(), porque tengo class based view
+
+    path('api/token/', obtain_auth_token, name='obtain'), # path para la view de traer tokens
 ]
 

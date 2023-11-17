@@ -35,7 +35,7 @@ def register(request):
         messages.info(request, 'Email already exists') #send back an error message
         return redirect('register') # route back to register
       
-      elif User.objects.filter(username=username).exists:
+      elif User.objects.filter(username=username).exists():
         messages.info(request, 'Username already used') #send back an error message
         return redirect('register') # route back to register
       

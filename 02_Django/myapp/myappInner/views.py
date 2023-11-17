@@ -30,11 +30,29 @@ def register(request):
 
     #verifco passwords are equal
     if password == password2:
+      # check if the email/user exists on the db
+      if User.objects.filter(email=email).exists():
+        messages.info(request, 'Email already exists') #send back an error message
+        return redirect('register') # route back to register
+      
+      elif User.objects.filter(username=username).exists:
+        messages.info(request, 'Username already used') #send back an error message
+        return redirect('register') # route back to register
+      
+      else: #almaceno data en DB (en model User)
 
+        user = User.objects.create_user(username=username, email=email, password=password) #creo user con ese modelo
+        
+        user.save() # almaceno el user
 
-    #almaceno data en DB (moder user que es el by default)
+        return redirect('login') # route  to login
+    
+    else:
+      messages.info(request, 'Passwords do not match') #send back an error message
+      return redirect('register') # route back to register
 
-  return render(request, 'register.html') #si lo acceso normal, simplemlente traigo el html
+  else: #for a normal request on the page (e.g., HTTP)
+    return render(request, 'register.html') #si lo acceso normal, simplemlente traigo el html
 
 def counter(request):
 

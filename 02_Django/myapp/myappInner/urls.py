@@ -5,6 +5,7 @@ from . import views #importo views de este mismo forde
 urlpatterns = [
   path('', views.index, name = 'index'), # (path, handler), '' es la root
   path('counter', views.counter, name = 'counter'),
-  path('register', views.register, name = 'register') #add route for registre
+  path('register', views.register, name = 'register'), #add route for registre
+  path('login', views.login, name = 'login')
 ]
 

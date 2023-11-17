@@ -54,6 +54,29 @@ def register(request):
   else: #for a normal request on the page (e.g., HTTP)
     return render(request, 'register.html') #si lo acceso normal, simplemlente traigo el html
 
+def login(request):
+
+  # POST method routing
+  if request.method == 'POST': 
+
+    #saco info
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+
+    #verifico username y password
+    user = auth.authenticate(username=username, password=password)
+
+    if user is not None: #check if user is a valid user
+      auth.login(request, user) #hago login del user
+      return redirect('/') # lo regreso al home page
+
+    else:
+      messages.info(request, 'Invalid username or password')
+      return redirect('login')
+
+  else: # si es get method, mando html normal.
+    return render(request, 'login.html')
+
 def counter(request):
 
   text = request.POST.get('text')

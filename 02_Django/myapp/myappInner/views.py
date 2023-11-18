@@ -93,3 +93,6 @@ def counter(request):
 
   return render(request, 'counter.html', context) #html for counter
 
+def post(request, pk):
+  return render(request, 'post.html', {'pk': pk})
+

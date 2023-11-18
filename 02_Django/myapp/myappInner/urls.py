@@ -7,9 +7,9 @@ urlpatterns = [
   path('counter', views.counter, name = 'counter'),
   path('register', views.register, name = 'register'), #add route for registre
   path('login', views.login, name = 'login'),
-  path('logout', views.logout, name = 'logout')
+  path('logout', views.logout, name = 'logout'), 
 
   #dynamic routing
-  path('/post/<str:pk>')
+  path('post/<str:pk>', views.post, name = 'post')
 ]
 

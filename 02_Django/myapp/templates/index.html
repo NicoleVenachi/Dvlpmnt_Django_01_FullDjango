@@ -9,6 +9,16 @@
 </head>
 <body>
 
+
+  {%if user.is_authenticated %}
+
+  <h1> welcome, {{user.username}}</h1>
+  {% else %}
+  <h1> you're not logged in</h1>
+
+  {%endif%}
+
+
   <h1> Test </h1>
 
   {% for feature in features %}

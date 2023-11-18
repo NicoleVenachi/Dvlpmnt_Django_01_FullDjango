@@ -77,6 +77,10 @@ def login(request):
   else: # si es get method, mando html normal.
     return render(request, 'login.html')
 
+def logout(request):
+  auth.logout(request) #metod para hacer logout
+  return redirect('/')
+
 def counter(request):
 
   text = request.POST.get('text')

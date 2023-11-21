@@ -7,4 +7,7 @@ urlpatterns = [
     path('<str:room>/', views.room, name='room'), # rooms templates routing
     path('checkview', views.checkview, name='checkview'), # route to handle post petitions to accessing a room
     path('send', views.send, name='send'), #route to handle POST request to store data from new messages in the DB
+     path('getMessages/<str:room>/', views.getMessages, name='getMessages'), #route to FETCH all rooms messages
+
+    
 ]

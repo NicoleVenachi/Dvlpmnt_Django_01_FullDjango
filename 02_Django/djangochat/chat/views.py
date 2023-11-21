@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from chat.models import Room, Message
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse #JSON response, par respnder directamente un json
 
 
 # Create your views here.
@@ -49,3 +49,12 @@ def send(request):
   
   #at the end, send a http response message 
   return HttpResponse('Message sent successfully')
+
+def getMessages(request, room):
+
+  room_details = Room.objects.get(name=room) #get only one
+
+  roomMessages = Message.objects.filter(room =room_details.id) # get serveral instances
+
+  # retur directly a json reponse
+  return JsonResponse({"messages": list(roomMessages.values())} )

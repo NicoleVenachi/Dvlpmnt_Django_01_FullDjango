@@ -94,6 +94,7 @@ body {
     }
     </style>
 
+    <!-- onSubmit, sends the user to the room (making a post petiition on /checkview) -->
     <form id="post-form" method="POST" action="checkview">
         {% csrf_token %}
         <label>Room Name</label>

@@ -53,10 +53,15 @@ body {
 }
 </style>
 <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+<!-- import ajax -->
+
 </head>
+
+
 <body>
 
-<h2>{{room}} - DjChat</h2>
+<h2>{{room}} - DjChat</h2> 
+<!-- adding room name from the servrr -->
 
 <div id="display">
 
@@ -65,30 +70,39 @@ body {
   <span class="time-left">20th, April 2021</span>
 </div> -->
 
+<!-- esto era un template message, pero en DISPLAY, meterá nuevos mensajes-->
+
 </div>
 
 <script>
-$(document).ready(function(){
 
-setInterval(function(){
-    $.ajax({
-        type: 'GET',
-        url : "/getMessages/{{room}}/",
-        success: function(response){
-            console.log(response);
-            $("#display").empty();
-            for (var key in response.messages)
-            {
-                var temp="<div class='container darker'><b>"+response.messages[key].user+"</b><p>"+response.messages[key].value+"</p><span class='time-left'>"+response.messages[key].date+"</span></div>";
-                $("#display").append(temp);
-            }
-        },
-        error: function(response){
-            alert('An error occured')
-        }
-    });
-},1000);
-})
+
+// $(document).ready(function(){
+
+//   // AUTO FETCH REFRESHING USING AJAX
+//   // a /getMessages/:roomId, se le hace la petición de todos los messages
+
+// setInterval(function(){
+//     $.ajax({
+//         type: 'GET',
+
+//         url : "/getMessages/{{room}}/",
+//         success: function(response){
+//             console.log(response);
+//             $("#display").empty();
+//             for (var key in response.messages)
+//             {
+//               // creo el htmll con ese nuevo mensaje (por cada uno, itera sobre todos los mesagges. La funcion corre cada segundo)
+//                 var temp="<div class='container darker'><b>"+response.messages[key].user+"</b><p>"+response.messages[key].value+"</p><span class='time-left'>"+response.messages[key].date+"</span></div>";
+//                 $("#display").append(temp);
+//             }
+//         },
+//         error: function(response){
+//             alert('An error occured')
+//         }
+//     });
+// },1000);
+// })
 </script>
 
 
@@ -128,8 +142,13 @@ setInterval(function(){
 
     <form id="post-form">
         {% csrf_token %}
+
+        <!-- to hidden inputs to send the user name and room (los recibi al hacer el request de esta page)-->
         <input type="hidden" name="username" id="username" value="{{username}}"/>
         <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}"/>
+        <!-- ojito que del room_details estoy sacando el id, creado por defecto en el schema -->
+
+
         <input type="text" name="message" id="message" width="100px" />
         <input type="submit" value="Send">
     </form>
@@ -142,19 +161,25 @@ setInterval(function(){
   $(document).on('submit','#post-form',function(e){
     e.preventDefault();
 
+    // al dar clck, hago una POST request en /send, para store data en DB
+
     $.ajax({
       type:'POST',
       url:'/send',
       data:{
+          // json to send
           username:$('#username').val(),
           room_id:$('#room_id').val(),
           message:$('#message').val(),
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
       },
       success: function(data){
-         //alert(data)
+        //  alert(data)
+        //  si el mensaje se envia bien, que me mande un alert con la httt response, pero esto solo para ddevelopment
       }
     });
+
+    // cuandp se hace el send, el input del mensaje queda bacio
     document.getElementById('message').value = ''
   });
 </script>

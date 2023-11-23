@@ -59,7 +59,7 @@ ROOT_URLCONF = 'trydjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'], #base_dir eis the path to tempaltes
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

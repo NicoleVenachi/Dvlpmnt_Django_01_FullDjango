@@ -9,4 +9,10 @@
 
   <p>{{text}}  {{number}} </p>
 
+  <ul>
+    {% for sub_item in listElems %}
+    <li> {{ forloop.counter }} -> {{ sub_item }}</li>
+    {% endfor %}
+  </ul>
+
 {% endblock %}

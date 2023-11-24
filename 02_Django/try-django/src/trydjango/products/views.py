@@ -17,4 +17,4 @@ def product_detail_view(request): #not upper case functinos, and explicit to wha
   context = {
     "obj" : product_obj,
   }
-  return render(request, "product/detail.html", context)
+  return render(request, "products/product_detail.html", context)

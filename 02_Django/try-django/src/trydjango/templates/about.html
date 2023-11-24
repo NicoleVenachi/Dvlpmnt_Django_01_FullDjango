@@ -7,11 +7,26 @@
   <p> {{request.user}}</p>
   <p> {{request.user.is_authenticated}}</p>
 
-  <p>{{text}}  {{number}} </p>
+  <p>{{text|capfirst|upper}}  {{number}} </p>
+
+  {{ htmlText }}
+  {{ htmlText|safe }}
+  <!-- Para render strings as HTML, not a strings -->
+
+  {{ htmlText|striptags }}
+  <!-- Quitan html tags de strings -->
+
 
   <ul>
     {% for sub_item in listElems %}
-    <li> {{ forloop.counter }} -> {{ sub_item }}</li>
+
+      {% if sub_item == 123 %}
+      <li> {{ forloop.counter }} -> {{ sub_item|add:22 }}</li>
+
+      {% else %}
+      <li> {{ forloop.counter }} -> {{ sub_item }}</li>
+      {% endif %}
+
     {% endfor %}
   </ul>
 

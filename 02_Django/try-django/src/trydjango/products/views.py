@@ -73,15 +73,16 @@ def product_detail_view(request, id): #not upper case functinos, and explicit to
 
   # product_obj = get_object_or_404(Product, id=id)
 
+  try:
+    product_obj = Product.objects.get(id=id)
+  except Product.DoesNotExist:
+    raise Http404
+  
   # context = {
   #   "title": product_obj.title,
   #   "description": product_obj.description,
   # }
 
-  try:
-    product_obj = Product.objects.get(id=id)
-  except Product.DoesNotExist:
-    raise Http404
 
   # mas adecuado por si cambio mi dodel o quiero agregar mas models
   context = {
@@ -90,3 +91,19 @@ def product_detail_view(request, id): #not upper case functinos, and explicit to
 
   
   return render(request, "products/product_detail.html", context)
+
+def product_delete_view(request, id):
+                        
+  #obj = Product.objects.get(id=id) 
+  obj =  get_object_or_404(Product, id=id)
+
+  # Post method routing
+  if request.method == 'POST':
+    #confirmig delete
+    obj.delete()
+
+  context = {
+    "obj" : obj,
+  }
+
+  return render(request, "products/product_delete.html", context)

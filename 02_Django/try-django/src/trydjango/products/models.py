@@ -8,3 +8,7 @@ class Product(models.Model):
   summary = models.TextField(blank=False, null=False)
 
   featured = models.BooleanField(default=False) # null or default
+
+  def get_absolute_url(self):
+    return f"/products/{self.id}/"
+  

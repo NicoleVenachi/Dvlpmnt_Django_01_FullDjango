@@ -8,16 +8,30 @@ from .forms import ProductForm
 # Create your views here.
 def product_create_view(request):
 
-  form = ProductForm(request.POST or None) # digo el tipo de peticioin a la que respone
 
-  if form.is_valid(): #valido el form
-    form.save()
+  # ------ CON Django FORMS --------------------------------
+  # form = ProductForm(request.POST or None) # digo el tipo de peticioin a la que respone
 
-  context = {
-    "form" : form,
-  }
+  # if form.is_valid(): #valido el form
+  #   form.save()
+
+  # context = {
+  #   "form" : form,
+  # }
 
 
+  # return render(request, "products/product_create.html", context)
+
+
+  # ------ SIN Django FORMS --------------------------------
+
+  # POST method routing (store only on post, else render form normally)
+  if (request.method == 'POST'):
+    title = request.POST.get('title')  # saco query params
+    print(title)
+    # Product.objects.create(title=m
+
+  context = {}
   return render(request, "products/product_create.html", context)
 
 

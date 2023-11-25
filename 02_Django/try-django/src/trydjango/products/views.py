@@ -63,9 +63,9 @@ def product_create_view(request):
 
   # return render(request, "products/product_create.html", context)
 
-def product_detail_view(request): #not upper case functinos, and explicit to what it is
+def product_detail_view(request, id): #not upper case functinos, and explicit to what it is
 
-  product_obj = Product.objects.get(id=1)
+  product_obj = Product.objects.get(id=id)
 
   # context = {
   #   "title": product_obj.title,

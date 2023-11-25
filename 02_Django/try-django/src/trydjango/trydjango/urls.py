@@ -28,6 +28,6 @@ urlpatterns = [
     path('about', about_view, name='about'),
     path('social', social_view, name='social'),
 
-    path('product', product_detail_view, name='product-detail' ),
+    path('product/<int:id>', product_detail_view, name='product-detail' ),
     path('create', product_create_view, name='product-create' )
 ]

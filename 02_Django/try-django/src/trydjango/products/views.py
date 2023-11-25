@@ -1,4 +1,8 @@
-from django.shortcuts import render
+
+from django.shortcuts import render, get_object_or_404
+
+
+from django.http import Http404
 
 from .models import Product
 
@@ -65,12 +69,19 @@ def product_create_view(request):
 
 def product_detail_view(request, id): #not upper case functinos, and explicit to what it is
 
-  product_obj = Product.objects.get(id=id)
+  
+
+  # product_obj = get_object_or_404(Product, id=id)
 
   # context = {
   #   "title": product_obj.title,
   #   "description": product_obj.description,
   # }
+
+  try:
+    product_obj = Product.objects.get(id=id)
+  except Product.DoesNotExist:
+    raise Http404
 
   # mas adecuado por si cambio mi dodel o quiero agregar mas models
   context = {

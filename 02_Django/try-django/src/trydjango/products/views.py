@@ -8,19 +8,18 @@ from .forms import ProductForm, RawProductForm
 # Create your views here.
 def product_create_view(request):
 
-
   # ------ CON Django FORMS --------------------------------
-  # form = ProductForm(request.POST or None) # digo el tipo de peticioin a la que respone
+  form = ProductForm(request.POST or None) # digo el tipo de peticioin a la que respone
 
-  # if form.is_valid(): #valido el form
-  #   form.save()
+  if form.is_valid(): #valido el form
+    form.save()
 
-  # context = {
-  #   "form" : form,
-  # }
+  context = {
+    "form" : form,
+  }
 
 
-  # return render(request, "products/product_create.html", context)
+  return render(request, "products/product_create.html", context)
 
 
   # ------ SIN Django FORMS --------------------------------
@@ -36,24 +35,24 @@ def product_create_view(request):
 
   # -------- PUre Django FOrms ------
 
-  form = RawProductForm() # render default form
-  # POST method routing
-  if request.method == 'POST': 
-    form = RawProductForm(request.POST)
+  # form = RawProductForm() # render default form
+  # # POST method routing
+  # if request.method == 'POST': 
+  #   form = RawProductForm(request.POST)
 
-    if form.is_valid():
-      print(form.cleaned_data) #returns data into a dictionary
-      Product.objects.create(**form.cleaned_data) #paso directamnete los argumentso para crear de una el producot en la DB
-      
-    else:
-      print(form.errors)
+  #   if form.is_valid():
+  #     print(form.cleaned_data) #returns data into a dictionary
+  #     Product.objects.create(**form.cleaned_data) #paso directamnete los argumentso para crear de una el producot en la DB
+
+  #   else:
+  #     print(form.errors)
 
 
-  context = {
-    "form": form
-  }
+  # context = {
+  #   "form": form
+  # }
 
-  return render(request, "products/product_create.html", context)
+  # return render(request, "products/product_create.html", context)
 
 def product_detail_view(request): #not upper case functinos, and explicit to what it is
 

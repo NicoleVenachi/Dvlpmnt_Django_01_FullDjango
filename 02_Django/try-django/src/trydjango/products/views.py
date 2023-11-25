@@ -9,7 +9,16 @@ from .forms import ProductForm, RawProductForm
 def product_create_view(request):
 
   # ------ CON Django FORMS --------------------------------
-  form = ProductForm(request.POST or None) # digo el tipo de peticioin a la que respone
+
+  initial_data = {
+    "title": "Default title"
+  } # using initial argument
+
+  obj = Product.objects.get(id=1)# using an instance of an object
+
+
+  form = ProductForm(request.POST or None, initial=initial_data) # digo el tipo de peticioin a la que respone
+  form = ProductForm(request.POST or None, instance=obj)
 
   if form.is_valid(): #valido el form
     form.save()

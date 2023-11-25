@@ -42,7 +42,7 @@ class ProductForm(forms.ModelForm):
       # "email"
     }
 
-  # ***** CUSTOMIZE FORMS VALIDATIONS ******
+  # ***** CUSTOMIZED FORMS VALIDATIONS ******
 
   def clean_title(self, *args, **kwargs):
     title = self.cleaned_data.get("title")

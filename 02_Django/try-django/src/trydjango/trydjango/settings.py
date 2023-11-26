@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     #thrid party (mias)
     'products',
     'pages',
-    'blog'
+    'blog',
+    'courses'
 
 ]
 

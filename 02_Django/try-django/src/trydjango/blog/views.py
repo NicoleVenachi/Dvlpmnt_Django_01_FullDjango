@@ -11,6 +11,9 @@ from django.views.generic import (
 from .models import Article
 from .forms import ArticleModelForm
 
+from django.urls import reverse
+
+
 # Create your views here.
 
 class ArticleCreateView(CreateView): #list several
@@ -51,3 +54,13 @@ class ArticleDetailView(DetailView): #list several
   def get_object(self):
     id_ = self.kwargs.get('id') 
     return get_object_or_404(Article, id=id_) #element to show
+
+class ArticleDeleteView(DeleteView): #list several
+  template_name = 'articles/article_delete.html' # ovewrite the template name
+
+  def get_object(self):
+    id_ = self.kwargs.get('id') 
+    return get_object_or_404(Article, id=id_) #element to show
+  
+  def get_success_url(self):
+    return reverse('articles:article-list')

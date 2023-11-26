@@ -4,7 +4,7 @@ from .views import (
     ArticleUpdateView,
     ArticleDetailView,
     ArticleListView,
-    #ArticleDeleteView,
+    ArticleDeleteView,
 )
 
 app_name = 'articles'
@@ -13,6 +13,6 @@ urlpatterns = [
     path('<int:id>/', ArticleDetailView.as_view(), name='article-detail'), #kw_arg as pk by default on detail
     path('create/', ArticleCreateView.as_view(), name='article-create'),
     path('<int:id>/update/', ArticleUpdateView.as_view(), name='article-update'),
-    # path('<int:id>/delete/', ArticleDeleteView.as_view(), name='article-delete'),
+    path('<int:id>/delete/', ArticleDeleteView.as_view(), name='article-delete'),
 ]
 

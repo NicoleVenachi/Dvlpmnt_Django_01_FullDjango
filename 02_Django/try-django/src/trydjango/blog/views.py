@@ -25,6 +25,20 @@ class ArticleCreateView(CreateView): #list several
   # def get_success_url(self):
   #   return '/'
   
+class ArticleUpdateView(UpdateView): #list several
+  template_name = 'articles/article_create.html' # ovewrite the template name
+  form_class = ArticleModelForm # set te form
+  # success_url = '/'
+  
+
+  def get_object(self):
+    id_ = self.kwargs.get('id') 
+    return get_object_or_404(Article, id=id_) #element to show
+
+  def form_valid(self, form):
+    print(form.cleaned_data)
+    return super().form_valid(form)
+  
 
 class ArticleListView(ListView): #list several
   template_name = 'articles/article_list.html' # ovewrite the template name

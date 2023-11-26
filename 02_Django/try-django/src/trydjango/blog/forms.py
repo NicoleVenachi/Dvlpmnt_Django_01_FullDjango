@@ -3,7 +3,7 @@ from django.forms import ModelForm
 
 from .models import Article
 
-class ArticleForm(ModelForm):
+class ArticleModelForm(ModelForm):
 
   class Meta:
     model = Article

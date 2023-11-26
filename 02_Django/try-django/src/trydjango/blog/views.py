@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Article
 
@@ -16,3 +16,9 @@ class ArticleListView(ListView): #list several
 
   queryset = Article.objects.all() #necesito pasar un queryset con la data para listar
 
+class ArticleDetailView(DetailView): #list several
+  template_name = 'articles/article_detail.html' # ovewrite the template name
+
+  def get_object(self):
+    id_ = self.kwargs.get('id') 
+    return get_object_or_404(Article, id=id_) #element to show

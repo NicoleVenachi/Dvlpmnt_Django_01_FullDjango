@@ -22,7 +22,7 @@ class CourseCreateView(View):
     form = CourseModelForm(request.POST)
     if form.is_valid():
         form.save()
-        form = CourseModelForm()
+        form = CourseModelForm() # re-initialize the form to print it empty 
     context = {"form": form}
     return render(request, self.template_name, context)
 

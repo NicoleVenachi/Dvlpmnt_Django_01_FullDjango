@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     CourseView,
-    # CourseListView,
+    CourseListView,
     # CourseCreateView,
     # CourseUpdateView,
     # CourseDeleteView
@@ -10,7 +10,7 @@ from .views import (
 
 app_name = 'courses'
 urlpatterns = [
-    # path('', CourseListView.as_view(), name='courses-list'),
+    path('', CourseListView.as_view(), name='courses-list'),
     # path('', my_fbv, name='courses-list'),
     
 
